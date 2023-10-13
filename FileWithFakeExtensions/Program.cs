@@ -1,3 +1,6 @@
+using FileWithFakeExtensions.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FileWithFakeExtensions
 {
     public class Program
@@ -5,6 +8,10 @@ namespace FileWithFakeExtensions
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(connectionString));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
