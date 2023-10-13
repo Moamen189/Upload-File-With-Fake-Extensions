@@ -16,5 +16,10 @@ namespace FileWithFakeExtensions.Controllers
             var Files = _context.UploadedFiles.ToList();
             return View(Files);
         }
+
+        public IActionResult Upload()
+        {
+            return View();
+        }
     }
 }
